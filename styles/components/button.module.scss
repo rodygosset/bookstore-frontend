@@ -3,6 +3,7 @@
 @import "@styles/base/_mixins.scss";
 @import "@styles/base/_typography.scss";
 @import "@styles/abstracts/_colors.scss";
+@import "@styles/abstracts/_variables.scss";
 
 @mixin button-styler ($bg-color, $text-color) {
     background: $bg-color;
@@ -20,6 +21,10 @@
             transform: scale(1.1);
             @include spread-shadow-colored($main-color);
         }
+    }
+
+    @media (max-width: $bp-small) {
+        width: 100%;
     }
 }
 
@@ -39,6 +44,10 @@
             @include spread-shadow-colored($main-color);
         }
 
+    }
+
+    @media (max-width: $bp-small) {
+        width: 100%;
     }
 
 } 

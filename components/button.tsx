@@ -5,7 +5,7 @@ import React, { LegacyRef } from "react";
 import { MouseEventHandler } from "react";
 
 interface Props {
-    children: any;
+    children?: any;
     onClick: (event?: any) => void;
     onMouseOver?: (event?: any) => void;
     onMouseLeave?: (event?: any) => void;
@@ -17,6 +17,7 @@ interface Props {
     hasPadding?: boolean;
     bigPadding?: boolean;
     fullWidth?: boolean;
+    className?: string;
 }
 
 const Button = ({ 
@@ -31,7 +32,8 @@ const Button = ({
         animateOnHover = true,
         hasPadding = true, 
         bigPadding, 
-        fullWidth
+        fullWidth,
+        className,
     }: Props, ref: LegacyRef<HTMLButtonElement>) => {
 
     const getClassNames = () => {
@@ -42,6 +44,7 @@ const Button = ({
         classNames += (bigPadding ? ' ' + styles.bigPadding : '') 
         classNames += (fullWidth ? ' ' + styles.fullWidth : '')
         classNames += ' ' + (role ? styles[role] : styles.primary)
+        classNames += (className ? ' ' + className : '')
         return classNames
     }
 

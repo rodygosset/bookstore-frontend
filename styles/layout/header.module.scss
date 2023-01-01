@@ -7,8 +7,9 @@
 
 .header {
 
-    @include flex-container(row, nowrap, flex-start, center);
+    @include flex-container(row, nowrap, space-between, center);
     padding: 0 10vw;
+    gap: 10px;
 
     position: fixed;
     top: 0;
@@ -23,26 +24,91 @@
 
     }
 
-    .appName {
+    nav {
+        @include flex-container(row, nowrap, flex-end, center);
+        width: 100%;
 
-        @include flex-container(row, nowrap, flex-start, center);
-        gap: 10px;
-
-        .logo {
+        .burgerIconContainer {
+            @include reset-button;
             position: relative;
-            width: 30px;
-            height: 30px;
+            width: 2rem;
+            height: 2rem;
+    
+            &:hover {
+                cursor: pointer;
+            }
+    
+            @media (min-width: calc($bp-small + 1px)) {
+                display: none;
+            }
         }
 
-        p {
-            @include button-text;
-            color: $primary;
+        button.closeNav {
+            position: absolute;
+            top: calc(calc($nav-bar-height / 2) - 10px);
+            right: 10vw;
+            font-size: 20px;
+    
+            @media (min-width: calc($bp-small + 1px)) {
+                display: none;
+            }
+        }
+
+        ul {
+            @include reset-list;
+            @include flex-container(row, nowrap, flex-end, center);
+
+            gap: 30px;
+
+            li {
+
+                &.current {
+                    color: $black;
+                }
+
+                color: $black-400;
+
+                a {
+                    @include flex-row-nowrap;
+                    @include button-text;
+                    padding: 10px 20px;
+                    gap: 10px;
+                    transition: all 200ms ease-in-out;
+
+                    &:hover {
+                        background: rgba($color: $black, $alpha: 0.05);
+                    }
+    
+                }
+            }
 
             @media (max-width: $bp-small) {
                 display: none;
             }
         }
 
+        @media (max-width: $bp-small) {
+
+            transition: all 200ms ease-in-out;
+
+            &.showNav {
+
+                justify-content: center;
+
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                backdrop-filter: blur(10px);
+                //background: $white-100;
+
+                ul {
+                    @include flex-container(column, nowrap);
+                }
+            }
+        }
     }
 
 }

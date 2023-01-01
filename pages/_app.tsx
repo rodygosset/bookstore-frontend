@@ -1,5 +1,6 @@
 import Header from '@components/layout/header'
 import '@styles/globals.scss'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 

@@ -1,0 +1,26 @@
+@import "@styles/base/_mixins.scss";
+@import "@styles/base/_typography.scss";
+@import "@styles/abstracts/_colors.scss";
+@import "@styles/abstracts/_variables.scss";
+
+.appName {
+
+    @include flex-container(row, nowrap, flex-start, center);
+    gap: 10px;
+
+    .logo {
+        position: relative;
+        width: 30px;
+        height: 30px;
+    }
+
+    p {
+        @include button-text;
+        color: $primary;
+
+        @media (max-width: $bp-small) {
+            display: none;
+        }
+    }
+
+}
