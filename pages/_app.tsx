@@ -1,3 +1,4 @@
+import Header from '@components/layout/header'
 import '@styles/globals.scss'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
           		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
 			</Head>
 
+			<Header/>
 			<Component {...pageProps} />
 		</>
 	)
