@@ -1,13 +1,11 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { faBookOpen, faClose, faHome, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "@styles/layout/header.module.scss"
 import Link from "next/link"
-import Image from "next/image"
 import { useRouter } from "next/router";
 import AppLogo from "@components/layout/header/app-logo";
-import { useState } from "react";
-import Button from "@components/button";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 interface NavItem {
     route: string;
@@ -15,92 +13,71 @@ interface NavItem {
     icon: IconProp;
 } 
 
+interface NavLinkProps {
+    item: NavItem
+}
 
-const Header = () => {
+const NavLink = ({ item }: NavLinkProps) => {
 
-    const navItems: NavItem[] = [
-        {
-            route: "/",
-            label: "Home",
-            icon: faHome
-        },
-        {
-            route: "/catalog",
-            label: "Catalog",
-            icon: faBookOpen
-        },
-        {
-            route: "/cart",
-            label: "Cart",
-            icon: faShoppingCart
-        }
-    ]
+    const { route, label, icon } = item
 
     const router = useRouter()
 
-    // nav & burger icon logic
 
-    const [showNav, setShowNav] = useState(false)
+    // add the .current class if the link's route 
+    // corresponds to the current route
 
-    const toggleShowNav = () => setShowNav(!showNav)
 
-    const getNavClassName = () => showNav ? styles.showNav : ''
+    const [isCurrent, setIsCurrent] = useState(false)
+
+    useEffect(() => setIsCurrent(router.asPath.split('?')[0] == route), [])
+
+    const getClassName = () => {
+        return isCurrent ? styles.current : ''
+    }
+
+    const handleNavLinkClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+        if(isCurrent) event.preventDefault()
+    }
+
+    return (
+        <li 
+            key={route}
+            className={getClassName()}>
+            <Link href={route} onClick={handleNavLinkClick}>
+                <FontAwesomeIcon icon={icon} />
+                { label }
+            </Link>
+        </li>
+    )
+
+}
+
+
+const Header = () => {
+
+    const router = useRouter()
+
+    // if we're currently at /cart
+    // hide the nav link to the cart page
+
+    const [isCurrentRoute, setIsCurrentRoute] = useState(false)
+
+    useEffect(() => setIsCurrentRoute(router.asPath.split('?')[0] == "/cart"), [router.asPath])
 
     return (
         <header className={styles.header}>
             <AppLogo/>
-            <nav className={getNavClassName()}>
-            {
-                showNav ?
-                <Button
-                    icon={faClose}
-                    role="tertiary"
-                    onClick={toggleShowNav}
-                    hasPadding={false}
-                    animateOnHover={false}
-                    className={styles.closeNav}
-                />
-                :
-                <></>
-            }
-                <button 
-                    hidden={showNav}
-                    className={styles.burgerIconContainer} 
-                    onClick={toggleShowNav}>
-                    <Image 
-                        quality={100}
-                        src={'/images/burger.svg'} 
-                        alt={"burger"} 
-                        priority
-                        fill
-                        style={{ 
-                            objectFit: "contain", 
-                            top: "auto"
-                        }}
-                    />
-                </button>
-                <ul>
+            <nav>
                 {
-                    navItems.map(({ route, label, icon }) => {
-
-                        const isCurrentRoute = () => router.pathname == route
-                        const getClassName = () => {
-                            return isCurrentRoute() ? styles.current : ''
-                        }
-
-                        return (
-                            <li 
-                                key={route}
-                                className={getClassName()}>
-                                <Link href={route}>
-                                    <FontAwesomeIcon icon={icon} />
-                                    { label }
-                                </Link>
-                            </li>
-                        )
-                    })
+                    !isCurrentRoute ?
+                    <Link href="/cart">
+                        <FontAwesomeIcon icon={faShoppingCart} />
+                        Cart
+                    </Link>
+                    :
+                    <></>
                 }
-                </ul>
             </nav>
         </header>
     )

@@ -44,4 +44,37 @@
 		}
 	
 	}
+
+	.catalogSection {
+
+		@include flex-container(column, nowrap, center, center);
+		gap: 60px;
+		padding: 0px 10vw;
+
+		.sectionTitle {
+
+			width: 100%;
+
+			@include flex-col-nowrap;
+			gap: 10px;
+
+			h3 {
+				@include header-4-bold;
+				color: $primary;
+			}
+
+			p {
+				@include text-md-medium;
+				color: $primary-600;
+			}
+
+		}
+
+		.catalogContainer {
+			@include flex-container(row, wrap, space-between, flex-start);
+			width: 100%;
+			gap: 60px;
+		}
+
+	}
 }

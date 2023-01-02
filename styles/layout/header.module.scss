@@ -5,109 +5,38 @@
 @import "@styles/abstracts/_colors.scss";
 @import "@styles/abstracts/_variables.scss";
 
+
+@mixin only-show-on-mobile {
+
+    @media (min-width: calc($bp-small + 1px)) {
+        display: none;
+    }
+
+}
+
 .header {
 
     @include flex-container(row, nowrap, space-between, center);
     padding: 0 10vw;
     gap: 10px;
+    z-index: 100;
 
     position: fixed;
     top: 0;
     width: 100vw;
     height: $nav-bar-height;
 
-    backdrop-filter: blur(10px);
-
-    &.blur {
-
-        backdrop-filter: blur(20px);
-
-    }
+    backdrop-filter: blur(40px);
 
     nav {
         @include flex-container(row, nowrap, flex-end, center);
+        gap: 10px;
         width: 100%;
 
-        .burgerIconContainer {
-            @include reset-button;
-            position: relative;
-            width: 2rem;
-            height: 2rem;
-    
-            &:hover {
-                cursor: pointer;
-            }
-    
-            @media (min-width: calc($bp-small + 1px)) {
-                display: none;
-            }
-        }
-
-        button.closeNav {
-            position: absolute;
-            top: calc(calc($nav-bar-height / 2) - 10px);
-            right: 10vw;
-            font-size: 20px;
-    
-            @media (min-width: calc($bp-small + 1px)) {
-                display: none;
-            }
-        }
-
-        ul {
-            @include reset-list;
-            @include flex-container(row, nowrap, flex-end, center);
-
-            gap: 30px;
-
-            li {
-
-                &.current {
-                    color: $black;
-                }
-
-                color: $black-400;
-
-                a {
-                    @include flex-row-nowrap;
-                    @include button-text;
-                    padding: 10px 20px;
-                    gap: 10px;
-                    transition: all 200ms ease-in-out;
-
-                    &:hover {
-                        background: rgba($color: $black, $alpha: 0.05);
-                    }
-    
-                }
-            }
-
-            @media (max-width: $bp-small) {
-                display: none;
-            }
-        }
-
-        @media (max-width: $bp-small) {
-
-            transition: all 200ms ease-in-out;
-
-            &.showNav {
-
-                justify-content: center;
-
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                display: flex;
-                backdrop-filter: blur(10px);
-                //background: $white-100;
-
-                ul {
-                    @include flex-container(column, nowrap);
-                }
-            }
+        a {
+            @include flex-container(row, nowrap, center, center);
+            gap: 10px;
+            color: $primary;
         }
     }
 

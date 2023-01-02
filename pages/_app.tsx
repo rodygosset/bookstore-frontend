@@ -3,8 +3,21 @@ import '@styles/globals.scss'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useMemo, useState } from 'react'
+import { Context, initContext } from '@lib/context'
 
 export default function App({ Component, pageProps }: AppProps) {
+	
+	// set up the context API to allow the app to share data across pages
+
+	const [appData, setAppData] = useState(initContext.appData)
+
+	// memoize the context,
+	// to avoid needless React re-renders
+	const value = useMemo(
+		() => ({ appData, setAppData }), [appData]
+	)
+	
 	return (
 		<>
 			<Head>
@@ -15,8 +28,14 @@ export default function App({ Component, pageProps }: AppProps) {
           		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
 			</Head>
 
-			<Header/>
-			<Component {...pageProps} />
+			{/* wrap the whole app in the context provider
+				so every component & page can access appData
+			*/}
+			
+			<Context.Provider value={value}>
+				<Header/>
+				<Component {...pageProps} />
+			</Context.Provider>
 		</>
 	)
 }

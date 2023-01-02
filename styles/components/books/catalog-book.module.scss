@@ -1,0 +1,49 @@
+
+@import "@styles/base/_reset.scss";
+@import "@styles/base/_mixins.scss";
+@import "@styles/base/_typography.scss";
+@import "@styles/abstracts/_colors.scss";
+@import "@styles/abstracts/_variables.scss";
+
+.catalogBook {
+    @include flex-container(column, nowrap, flex-start, flex-start);
+    gap: 5px;
+
+    width: 145px;
+
+    transition: all 200ms ease-in-out;
+
+    .bookImage {
+        position: relative;
+        width: 145px;
+        height: 220px;
+    }
+
+    h4 {
+        @include text-md-bold;
+        @include text-overflow-ellipsis;
+        width: 100%;
+        color: $black;
+    }
+
+    p {
+        @include text-overflow-ellipsis;
+        @include text-sm-medium;
+        width: 100%;
+        color: $black-600;
+    }
+
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        box-shadow: 0px 30px 60px $primary-400;
+
+        h4, p {
+            padding: 0 10px;
+        }
+
+        padding-bottom: 10px;
+
+    }
+}

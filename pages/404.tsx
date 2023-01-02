@@ -1,6 +1,7 @@
 import Button from "@components/button"
 import { faHome } from "@fortawesome/free-solid-svg-icons"
 import styles from "@styles/pages/404.module.scss"
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -14,6 +15,10 @@ const My404 = () => {
 
     return (
         <div className={styles.container}>
+            <Head>
+                <title>Bookstore - 404 - Page not found</title>
+                <meta name="description" content="Requested page could not be found..." />
+            </Head>
             <div className={styles.illustrationContainer}>
                 <Image 
                     quality={100}

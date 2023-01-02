@@ -21,6 +21,8 @@
       "@conf/*": ["conf/*"],
       "@styles/*": ["styles/*"],
       "@images/*": ["public/images/*"],
+      "@lib/*": ["lib/*"],
+      "@api-conf/*": ["api-conf/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

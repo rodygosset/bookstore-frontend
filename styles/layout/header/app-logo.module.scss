@@ -8,19 +8,19 @@
     @include flex-container(row, nowrap, flex-start, center);
     gap: 10px;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     .logo {
         position: relative;
         width: 30px;
         height: 30px;
     }
 
-    p {
+    a {
         @include button-text;
         color: $primary;
-
-        @media (max-width: $bp-small) {
-            display: none;
-        }
     }
 
 }
