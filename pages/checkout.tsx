@@ -73,6 +73,7 @@ const Checkout = () => {
                         <Label htmlFor="payment-details">Email address</Label>
                         <TextInput 
                             placeholder="email@example.com"
+                            type="email"
                             currentValue={email}
                             onChange={setEmail}                        
                         />
