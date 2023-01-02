@@ -59,12 +59,12 @@
 			gap: 10px;
 
 			h3 {
-				@include header-4-bold;
+				@include header-3-bold;
 				color: $primary;
 			}
 
 			p {
-				@include text-md-medium;
+				@include text-xl-medium;
 				color: $primary-600;
 			}
 
@@ -76,7 +76,7 @@
 			gap: 60px;
 
 			@media (max-width: $bp-small) {
-				justify-content: center;
+				@include flex-container(column, nowrap, center, center);
 			}
 		}
 

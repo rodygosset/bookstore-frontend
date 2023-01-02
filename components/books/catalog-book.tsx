@@ -33,13 +33,16 @@ const CatalogBook = ({ book }: Props) => {
                     }}
                 />
             </div>
-            <h4>{ book.title }</h4>
-            {
-                book.authors ?
-                <p>By { book.authors[0] }</p>
-                :
-                <></>
-            }
+            <div className={styles.textContent}>
+                <h4>{ book.title }</h4>
+                {
+                    book.authors ?
+                    <p>By { book.authors[0] }</p>
+                    :
+                    <></>
+                }
+            </div>
+            
         </div>
     )
 }

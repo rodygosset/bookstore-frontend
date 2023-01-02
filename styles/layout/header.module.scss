@@ -5,15 +5,6 @@
 @import "@styles/abstracts/_colors.scss";
 @import "@styles/abstracts/_variables.scss";
 
-
-@mixin only-show-on-mobile {
-
-    @media (min-width: calc($bp-small + 1px)) {
-        display: none;
-    }
-
-}
-
 .header {
 
     @include flex-container(row, nowrap, space-between, center);
@@ -35,6 +26,7 @@
 
         a {
             @include flex-container(row, nowrap, center, center);
+            @include text-xl-bold;
             gap: 10px;
             color: $primary;
         }

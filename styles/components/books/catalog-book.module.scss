@@ -12,38 +12,66 @@
     width: 145px;
 
     transition: all 200ms ease-in-out;
+    padding-bottom: 10px;
 
     .bookImage {
         position: relative;
+        min-width: 145px;
         width: 145px;
         height: 220px;
     }
 
-    h4 {
-        @include text-md-bold;
-        @include text-overflow-ellipsis;
+    .textContent {
+        @include flex-container(column, nowrap, flex-start, flex-start);
+        gap: 5px;
         width: 100%;
-        color: $black;
-    }
 
-    p {
-        @include text-overflow-ellipsis;
-        @include text-sm-medium;
-        width: 100%;
-        color: $black-600;
-    }
-
-
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-        box-shadow: 0px 30px 60px $primary-400;
+        h4 {
+            @include header-4-bold;
+            @include text-overflow-ellipsis;
+            width: 100%;
+            color: $black;
+        }
+    
+        p {
+            @include text-overflow-ellipsis;
+            @include text-md-medium;
+            width: 100%;
+            color: $black-600;
+        }
 
         h4, p {
             padding: 0 10px;
         }
+        
+    }
 
-        padding-bottom: 10px;
+    box-shadow: 0px 30px 60px $primary-400;
 
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+
+
+    @media (max-width: $bp-small) {
+
+        @include flex-container(row, nowrap, flex-start, center);
+        width: 80vw;
+        gap: 30px;
+        padding-bottom: 0px;
+
+        .textContent {
+            @include flex-container(column, nowrap, center, flex-start);
+            width: calc(80vw - $book-image-width - 60px);
+            padding: 30px 0px;
+            height: 220px;
+
+            h4 {
+                width: 100%;
+                max-height: calc(220px - 60px - 30px);
+                white-space: initial;
+            }
+        }
     }
 }

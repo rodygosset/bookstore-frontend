@@ -19,7 +19,7 @@
     }
 
     a {
-        @include button-text;
+        @include text-xl-bold;
         color: $primary;
     }
 
