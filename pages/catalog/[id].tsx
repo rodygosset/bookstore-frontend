@@ -1,8 +1,11 @@
+import styles from "@styles/pages/catalog/view-book.module.scss"
 import { Book, GoogleBooksVolume, serializeGoogleBooksVolume } from "@api-conf/data-types/book";
 import { GetServerSideProps, NextPage } from "next"
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { frontendExternalURL } from "@api-conf/conf";
+import BackwardNavLink from "@components/backward-nav-link";
 
 
 interface Props {
@@ -15,15 +18,36 @@ const ViewBook: NextPage<Props> = ({ book, is404 }) => {
     const router = useRouter()
 
     useEffect(() => {
+        console.log(book)
         if(is404) router.push('/404')
     }, [])
 
+
+    // generate meta data for other online platforms
+    // like social media
+
+    const pageTitle = `"${book.title}" by ${book.authors?.at(0)} on BookStore`
+
+    const imageSrc = book.imageLinks ? book.imageLinks.thumbnail : `${frontendExternalURL}/images/default-book-cover.svg`
+
+    const description = `Buy "${book.title}" by ${book.authors?.at(0)} on BookStore.`
+
     return (
-        <div>
+        <div className={styles.viewBook}>
             <Head>
-                <title>BookStore - {book.title}</title>
+                <title>{ pageTitle }</title>
+                <meta name="title" property="og:title" content={pageTitle} />
+                <meta name="type" property="og:type" content="website" />
+                <meta name="description" property="og:description" content={description} />
+                <meta name="image" property="og:image" content={imageSrc} />
             </Head>
-            <h1>{book.title}</h1>
+            <div className={styles.pageHeader}>
+                <div className={styles.goBackContainer}>
+                    <BackwardNavLink/>
+                    <p>Go back</p>
+                </div>
+                <h1>{book.title}</h1>
+            </div>
         </div>
     )
 }

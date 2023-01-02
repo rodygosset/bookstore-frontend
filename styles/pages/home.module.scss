@@ -74,6 +74,10 @@
 			@include flex-container(row, wrap, space-between, flex-start);
 			width: 100%;
 			gap: 60px;
+
+			@media (max-width: $bp-small) {
+				justify-content: center;
+			}
 		}
 
 	}

@@ -10,7 +10,7 @@ interface Props {
 
 const CatalogBook = ({ book }: Props) => {
 
-    const imageSrc = book.imageLinks ? book.imageLinks.thumbnail : '/images/book-cover.png'
+    const imageSrc = book.imageLinks ? book.imageLinks.thumbnail : '/images/default-book-cover.svg'
 
     const router = useRouter()
 

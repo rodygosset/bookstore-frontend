@@ -1,0 +1,47 @@
+@import "@styles/base/_reset.scss";
+@import "@styles/base/_mixins.scss";
+@import "@styles/base/_typography.scss";
+@import "@styles/abstracts/_colors.scss";
+@import "@styles/abstracts/_variables.scss";
+
+.viewBook {
+
+    padding: 120px 10vw 30px;
+
+    .pageHeader {
+
+        @include flex-container(row, nowrap, flex-start, flex-start);
+        gap: 60px;
+
+        .goBackContainer {
+            @include flex-container(row, nowrap, flex-start, center);
+            gap: 20px;
+            width: $book-image-width;
+
+            p {
+                @include text-md-medium;
+                color: $primary;
+
+                @media (max-width: $bp-small) {
+                    display: none;
+                }
+            }
+
+            @media (max-width: $bp-small) {
+                width: fit-content;
+            }
+        }
+
+        h1 {
+            @include header-1-bold;
+            color: $primary;
+
+            @media (max-width: $bp-small) {
+                @include header-2-bold;
+            }
+        }
+
+    }
+
+
+}
