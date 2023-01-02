@@ -8,6 +8,8 @@ import { Context } from "@lib/context"
 import { roundNumberTo2Decimals } from "@lib/utils"
 import styles from "@styles/pages/cart.module.scss"
 import { NextPage } from "next"
+import Link from "next/link"
+import { useRouter } from "next/router"
 import { useContext, useEffect, useState } from "react"
 
 const Cart: NextPage = () => {
@@ -32,9 +34,12 @@ const Cart: NextPage = () => {
         setTotalCost(roundNumberTo2Decimals(total))
     })
 
-    const handleCheckout = () => {
 
-    }
+    // navigate to the checkout
+
+    const router = useRouter()
+
+    const handleCheckout = () => router.push('/checkout')
     
     return (
         <div className={styles.container}>
@@ -52,7 +57,7 @@ const Cart: NextPage = () => {
                     className={styles.checkOutButton}
                     icon={faCreditCard}
                     onClick={handleCheckout}>
-                    Checkout
+                    <Link href="/checkout">Checkout</Link>
                 </Button>
             </section>
             <ul className={styles.listContainer}>
@@ -84,7 +89,7 @@ const Cart: NextPage = () => {
                 fullWidth
                 icon={faCreditCard}
                 onClick={handleCheckout}>
-                Checkout
+                <Link href="/checkout">Checkout</Link>
             </Button>
         </div>
     )

@@ -1,0 +1,47 @@
+@import "@styles/base/_reset.scss";
+@import "@styles/base/_mixins.scss";
+@import "@styles/base/_typography.scss";
+@import "@styles/abstracts/_colors.scss";
+@import "@styles/abstracts/_variables.scss";
+
+.textField {
+
+    @include flex-container(column, nowrap, flex-start, flex-start);
+    gap: 20px;
+    width: 100%;
+
+    .label {
+
+        @include text-xl-semibold;
+        color: $primary;
+    }
+
+    .textInput {
+
+        @include reset-form-input;
+        @include flex-container(row, nowrap, flex-start, center);
+        @include text-md-medium;
+        gap: 10px;
+        padding: 20px;
+
+        background: $primary-100;
+        color: $primary;
+
+        width: 100%;
+
+        input {
+            @include reset-form-input;
+            @include text-md-medium;
+            background: transparent;
+            color: $primary;
+
+            &::placeholder {
+                color: $primary-600;
+            }
+        }
+
+        &::placeholder {
+            color: $primary-600;
+        }
+    }
+}

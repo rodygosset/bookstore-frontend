@@ -7,6 +7,7 @@
 .cartItem {
 
     @include flex-container(row, nowrap, flex-start, center);
+    width: 80vw;
     gap: 30px;
 
 
@@ -20,23 +21,27 @@
 
         @include flex-container(column, nowrap, center, flex-start);
         gap: 10px;
+        width: calc(80vw - 30px - 100px);
 
         h3 {
             @include header-3-bold;
+            @include text-overflow-ellipsis;
             color: $primary;
+            width: 100%;
+            white-space: wrap;
         }
 
         .quantity {
-            @include text-md-medium;
+            @include text-xl-medium;
             color: $secondary;
         }
 
         .editorialInfo {
-            @include text-md-medium;
+            @include text-xl-medium;
         }
 
         .priceInfo {
-            @include text-xl-bold;
+            @include header-3-bold;
             color: $secondary;
 
             span {

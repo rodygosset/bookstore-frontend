@@ -35,7 +35,10 @@ const ViewBook: NextPage<Props> = ({ book, is404 }) => {
     const description = `Buy "${book.title}" by ${book.authors?.at(0)} on BookStore.`
 
 
-    const handleShareClick = () => navigator.clipboard.writeText(window.location.toString())
+    const handleShareClick = () => {
+        navigator.clipboard.writeText(window.location.toString())
+        alert("Link copied to clipboard")
+    }
 
     return (
         <div className={styles.viewBook}>

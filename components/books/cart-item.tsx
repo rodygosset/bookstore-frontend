@@ -5,6 +5,7 @@ import Image from "next/image";
 import { frontendExternalURL } from "@api-conf/conf";
 import { CartItem } from "@lib/context";
 import { roundNumberTo2Decimals } from "@lib/utils";
+import Link from "next/link";
 
 interface Props {
     cartItem: CartItem;
@@ -55,7 +56,7 @@ const CartItem = ({ cartItem }: Props) => {
                 />
             </div>
             <div className={styles.textContent}>
-                <h3>{book.title}</h3>
+                <h3><Link href={`/catalog/${book.id}`}>{book.title}</Link></h3>
                 <p className={styles.quantity}>Quantity { cartItem.quantity }</p>
                 <p className={styles.editorialInfo}>By { book.authors?.at(0) } &bull; { book.publisher } (Editor) &bull; { year } </p>
                 <p className={styles.priceInfo}>${ priceTotal } {cartItem.quantity > 1 ? <span>(${ price } each)</span> : <></>}</p>
