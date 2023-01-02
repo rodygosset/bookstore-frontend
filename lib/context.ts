@@ -5,6 +5,7 @@ import React from "react";
 
 export interface CartItem {
     bookId: string;
+    priceInUSD: number;
     quantity: number;
 }
 

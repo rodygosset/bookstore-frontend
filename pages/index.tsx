@@ -3,6 +3,7 @@ import { Book, GoogleBooksResponse, serializeGoogleBooksVolume } from '@api-conf
 import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import CatalogBook from '@components/books/catalog-book'
+import { frontendExternalURL } from '@api-conf/conf'
 
 interface Props {
 	books: Book[];
@@ -14,7 +15,9 @@ const Home: NextPage<Props> = ({ books }) => {
 		<div className={styles.container}>
 			<Head>
 				<title>BookStore - Home</title>
-				<meta name="description" content="Home page of the best online BookStore!" />
+				<meta name="title" property="og:title" content="BookStore - Home"/>
+				<meta name="description" property='og:description' content="Home page of the best online BookStore!" />
+				<meta name="iamge" property="og:image" content={`${frontendExternalURL}/favicon/favicon-180x180.png`} />
 			</Head>
 			<section className={styles.hero}>
 				<h1>Find your next adventure</h1>

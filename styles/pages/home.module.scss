@@ -74,7 +74,7 @@
 		}
 
 		.catalogContainer {
-			@include flex-container(row, wrap, space-between, flex-start);
+			@include flex-container(row, wrap, space-around, flex-start);
 			width: 100%;
 			gap: 60px;
 

@@ -1,0 +1,50 @@
+@import "@styles/base/_reset.scss";
+@import "@styles/base/_mixins.scss";
+@import "@styles/base/_typography.scss";
+@import "@styles/abstracts/_colors.scss";
+@import "@styles/abstracts/_variables.scss";
+
+.cartItem {
+
+    @include flex-container(row, nowrap, flex-start, center);
+    gap: 30px;
+
+
+    .bookImage {
+        position: relative;
+        height: 150px;
+        aspect-ratio: 0.66;
+    }
+
+    .textContent {
+
+        @include flex-container(column, nowrap, center, flex-start);
+        gap: 10px;
+
+        h3 {
+            @include header-3-bold;
+            color: $primary;
+        }
+
+        .quantity {
+            @include text-md-medium;
+            color: $secondary;
+        }
+
+        .editorialInfo {
+            @include text-md-medium;
+        }
+
+        .priceInfo {
+            @include text-xl-bold;
+            color: $secondary;
+
+            span {
+                @include text-md-medium;
+                color: $secondary-600;
+            }
+        }
+
+    }
+
+}

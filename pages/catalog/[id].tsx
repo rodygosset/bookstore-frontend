@@ -21,7 +21,6 @@ const ViewBook: NextPage<Props> = ({ book, is404 }) => {
     const router = useRouter()
 
     useEffect(() => {
-        console.log(book)
         if(is404) router.push('/404')
     }, [])
 

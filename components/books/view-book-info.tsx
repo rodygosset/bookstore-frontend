@@ -14,8 +14,6 @@ interface Props {
 
 const ViewBookInfo = ({ book, mobile }: Props) => {
 
-    useEffect(() => console.log(book), [])
-
     const getClassNames = () => {
         let classNames = styles.textContent
         classNames += (mobile ? ' ' + styles.mobileBookInfo : '')
@@ -33,9 +31,19 @@ const ViewBookInfo = ({ book, mobile }: Props) => {
     const router = useRouter()
 
     const handleAddToCart = () => {
-        setAppData({
-            cart: [...appData.cart, { bookId: book.id, quantity: 1 }]
-        })
+        // check if the item is already in the cart
+        const index = appData.cart.findIndex(item => item.bookId == book.id)
+        if(index == -1) {
+            setAppData({
+                cart: [...appData.cart, { bookId: book.id, priceInUSD: book.priceInUSD ? book.priceInUSD : 0, quantity: 1 }]
+            })
+        } else {
+            let newCart = [...appData.cart]
+            newCart[index].quantity += 1
+            setAppData({
+                cart: [...newCart]
+            })
+        }
         router.push('/cart')
     }
 

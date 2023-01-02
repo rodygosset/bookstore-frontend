@@ -1,0 +1,74 @@
+@import "@styles/base/_reset.scss";
+@import "@styles/base/_mixins.scss";
+@import "@styles/base/_typography.scss";
+@import "@styles/abstracts/_colors.scss";
+@import "@styles/abstracts/_variables.scss";
+
+.container {
+
+    @include flex-container(column, nowrap, flex-start, flex-start);
+    gap: 30px;
+    padding: 100px 10vw 60px;
+    overflow: scroll;
+
+    .goBackContainer {
+        @include flex-container(row, nowrap, flex-start, center);
+        gap: 20px;
+        width: 100%;
+
+        p {
+            @include text-md-medium;
+            color: $primary;
+        }
+    }
+
+    .pageHeader {
+        @include flex-container(row, wrap, space-between, center);
+        width: 100%;
+        color: $primary;
+        column-gap: 30px;
+
+        .pageTitle {
+            @include flex-container(row, nowrap, flex-start, center);
+            gap: 20px;
+            font-size: 30px;
+
+            h1 {
+                @include header-1-bold;
+            }
+        }
+
+        .priceInfo {
+            @include text-xl-medium;
+        }
+
+        button.checkOutButton {
+            width: fit-content;
+
+            @media (max-width: $bp-md) {
+                display: none;
+            }
+        }
+
+    }
+
+
+    .listContainer {
+
+        @include reset-list;
+        @include flex-container(column, nowrap, flex-start, flex-start);
+        gap: 30px;
+
+        .divider {
+            color: transparent;
+            height: 1px;
+            width: 100%;
+            background: $primary-200;
+        }
+    }
+
+    .mainCheckOutButton {
+        margin-top: auto;
+    }
+
+}
