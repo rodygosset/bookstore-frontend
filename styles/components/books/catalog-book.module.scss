@@ -58,12 +58,12 @@
 
         @include flex-container(row, nowrap, flex-start, center);
         width: 80vw;
-        gap: 30px;
+        gap: 10px;
         padding-bottom: 0px;
 
         .textContent {
             @include flex-container(column, nowrap, center, flex-start);
-            width: calc(80vw - $book-image-width - 60px);
+            width: calc(80vw - $book-image-width - 20px);
             padding: 30px 0px;
             height: 220px;
 

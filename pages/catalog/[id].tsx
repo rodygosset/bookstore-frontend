@@ -1,12 +1,15 @@
 import styles from "@styles/pages/catalog/view-book.module.scss"
-import { Book, GoogleBooksVolume, serializeGoogleBooksVolume } from "@api-conf/data-types/book";
+import { Book, GoogleBooksVolume, serializeGoogleBooksVolume } from "@api-conf/data-types/book"
 import { GetServerSideProps, NextPage } from "next"
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { frontendExternalURL } from "@api-conf/conf";
-import BackwardNavLink from "@components/backward-nav-link";
-
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
+import { frontendExternalURL } from "@api-conf/conf"
+import BackwardNavLink from "@components/backward-nav-link"
+import Button from "@components/button";
+import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
+import ViewBookInfo from "@components/books/view-book-info";
 
 interface Props {
     book: Book;
@@ -32,6 +35,9 @@ const ViewBook: NextPage<Props> = ({ book, is404 }) => {
 
     const description = `Buy "${book.title}" by ${book.authors?.at(0)} on BookStore.`
 
+
+    const handleShareClick = () => navigator.clipboard.writeText(window.location.toString())
+
     return (
         <div className={styles.viewBook}>
             <Head>
@@ -41,13 +47,41 @@ const ViewBook: NextPage<Props> = ({ book, is404 }) => {
                 <meta name="description" property="og:description" content={description} />
                 <meta name="image" property="og:image" content={imageSrc} />
             </Head>
-            <div className={styles.pageHeader}>
-                <div className={styles.goBackContainer}>
-                    <BackwardNavLink/>
-                    <p>Go back</p>
-                </div>
-                <h1>{book.title}</h1>
+            <div className={styles.goBackContainer}>
+                <BackwardNavLink/>
+                <p>Go back</p>
             </div>
+            <main className={styles.pageContent}>
+                <div className={styles.wrapper}>
+                    <div className={styles.bookImage}>
+                        <Image 
+                            quality={100}
+                            src={imageSrc} 
+                            alt={"burger"} 
+                            priority
+                            fill
+                            style={{ 
+                                objectFit: "fill", 
+                                top: "auto"
+                            }}
+                        />
+                    </div>
+                    <section className={styles.bookInfo}>
+                        <h1>{book.title}</h1>
+                        <Button 
+                            icon={faShareFromSquare}
+                            role="secondary"
+                            onClick={handleShareClick}>
+                            Share
+                        </Button>
+
+                        <ViewBookInfo book={book}/>
+                    </section>
+                </div>
+                <section className={styles.bookInfo}>
+                    <ViewBookInfo book={book} mobile/>
+                </section>
+            </main>
         </div>
     )
 }

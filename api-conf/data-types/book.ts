@@ -32,7 +32,9 @@ export interface GoogleBooksVolume {
 		}
 	};
 	saleInfo: {
-		amount: number;
+		listPrice: {
+			amount: number;
+		}
 	}
 }
 
@@ -58,7 +60,7 @@ export const serializeGoogleBooksVolume = (volume: GoogleBooksVolume) => {
 		imageLinks,
 	} = volume.volumeInfo
 
-	const priceInUSD = volume.saleInfo?.amount 
+	const priceInUSD = volume.saleInfo?.listPrice.amount 
 
 	return {
 		id: volume.id,

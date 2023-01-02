@@ -8,6 +8,9 @@
 
 .container {
 
+	overflow: scroll;
+	padding-bottom: 60px;
+
 	.hero {
 		@include flex-container(column, nowrap, flex-end, center);
 		gap: 10px;

@@ -6,38 +6,103 @@
 
 .viewBook {
 
-    padding: 120px 10vw 30px;
+    @include flex-container(column, nowrap, stretch, flex-start);
+    gap: 30px;
+    padding: 100px 10vw 60px;
+    overflow: scroll;
 
-    .pageHeader {
+    .goBackContainer {
+        @include flex-container(row, nowrap, flex-start, center);
+        gap: 20px;
+        width: 100%;
+
+        p {
+            @include text-md-medium;
+            color: $primary;
+        }
+    }
+
+    .pageContent {
+
 
         @include flex-container(row, nowrap, flex-start, flex-start);
-        gap: 60px;
+        gap: 30px;
 
-        .goBackContainer {
-            @include flex-container(row, nowrap, flex-start, center);
-            gap: 20px;
-            width: $book-image-width;
+        @media (max-width: $bp-md) {
+            flex-flow: row wrap;
+        }
 
-            p {
-                @include text-md-medium;
+        .wrapper {
+            @include flex-container(row, nowrap, flex-start, flex-start);
+            gap: 30px;
+        }
+
+        .bookImage {
+            position: relative;
+            width: 30vw;
+            max-width: $big-book-image-width;
+            aspect-ratio: 0.66;
+            box-shadow: 0px 45px 120px $primary-600;
+        }
+
+        .bookInfo {
+
+            @include flex-container(column, wrap);
+            gap: 30px;
+            width: calc(70vw - 20vw - 30px);
+
+            @media (max-width: $bp-md) {
+                width: 100%;
+            }
+
+            h1 {
+                @include header-1-bold;
                 color: $primary;
-
-                @media (max-width: $bp-small) {
-                    display: none;
+        
+                @media (max-width: $bp-md) {
+                    @include header-2-bold;
                 }
             }
 
-            @media (max-width: $bp-small) {
-                width: fit-content;
-            }
-        }
+            .textContent {
 
-        h1 {
-            @include header-1-bold;
-            color: $primary;
+                @include flex-col-nowrap;
+                gap: 20px;
 
-            @media (max-width: $bp-small) {
-                @include header-2-bold;
+                p {
+                    @include header-4-medium;
+
+                    &.pricingInfo {
+                        @include header-3-bold;
+
+                        strong {
+                            color: $secondary;
+                        }
+                    }
+
+
+                    &.editorialInfo {
+                        @include header-4-bold;
+                    }
+
+                    &.description {
+                        @include text-md-medium;
+                        color: $black-600;
+                    }
+                }
+
+
+                @media (max-width: $bp-md) {
+                    display: none;
+                }
+
+                &.mobileBookInfo {
+                    display: none;
+
+                    @media (max-width: $bp-md) {
+                        display: flex;
+                    }
+                }
             }
         }
 
