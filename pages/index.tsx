@@ -40,7 +40,9 @@ const Home: NextPage<Props> = ({ books }) => {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
 
-	const data: GoogleBooksResponse = await (await fetch("https://www.googleapis.com/books/v1/volumes?q=ui design&filter=paid-ebooks&maxResults=40")).json()
+	// const data: GoogleBooksResponse = await (await fetch("https://www.googleapis.com/books/v1/volumes?q=ui design&filter=paid-ebooks&maxResults=40")).json()
+
+	const data: GoogleBooksResponse = await (await fetch("http://localhost:8081/BookStoreBackend/books")).json()
 
 	// convert Google Books Response to an array of our own Book object type
 

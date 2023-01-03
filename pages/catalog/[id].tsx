@@ -92,7 +92,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
     const bookId = context.query.id?.toString();
 
-	const data: GoogleBooksVolume = await (await fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)).json()
+	// const data: GoogleBooksVolume = await (await fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)).json()
+
+    const data: GoogleBooksVolume = await (await fetch(`http://localhost:8081/BookStoreBackend/books?id=${bookId}`)).json()
 
     // in case the is invalid (error 503)
     // redirect the 404 page
