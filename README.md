@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BookStore
 
-## Getting Started
+*Book store website using a Java backend*
 
-First, run the development server:
+## Tech Stack & Architecture
 
-```bash
+Les 3 éléments de l'architecture de ce site web sont les suivants:
+
+* Google Books API (source de données)
+* Books Servlet (Java Backend)
+* Next.js SSR
+* Next.js Frontend
+
+Lorsque le client fait une requête à l'adresse [http://localhost:3000/](http://localhost:3000/),  
+le moteur de rendu côté serveur de Next.js (Next.js SSR) fait une requête au Servlet Java,  
+qui lui même fait une requête à l'API de Google Books afin de récupérer les données à afficher.
+
+Le schéma suivant illustre le flow de données dans cette architecture:
+
+![FlowChart](/readme-ressources/BookStore%20Data%20Flowchart.png)
+
+Les flêches en bleu représentent les **requêtes sortantes**,  
+et celles en vert les **résponses**.
+
+## Lancement du frontend
+
+Afin de faire tourner le frontend du site, simplement taper la commande suivante:
+
+```
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Faites attention de bien exécuter cette commande
+> depuis la racine du projet Next.js
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Lancement du backend
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Ouvrir le projet Eclipse et lancer le serveur, comme fait lors du cours sur les Servlet.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Consulter & télécharger le code du backend depuis le repository GitHub suivant**:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[BookStore-Java-Backend](https://github.com/rodygosset/lp-web-app-bookstore-java-backend)
